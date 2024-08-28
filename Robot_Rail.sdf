@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="Robot_Rail">
+    <!-- This sdf file produces a model with the default parameters as
+         documented in cart_pole_params_named_vector.yaml.
+         They MUST be kept in sync. -->
+    <link name="Mount">
+      <inertial>
+        <mass>10.0</mass>
+        <!-- For this model case, with the cart not having any rotational
+             degrees of freedom, the values of the inertia matrix do not
+             participate in the model. Therefore we just set them to zero
+             (or near to zero since sdformat does not allow exact zeroes
+             for inertia values). -->
+        <inertia>
+          <ixx>1.0e-20</ixx>
+          <iyy>1.0e-20</iyy>
+          <izz>1.0e-20</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="mount_visual">
+        <geometry>
+          <box>
+            <size>0.22 0.22 0.2</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.9 0.5 0 1.0</diffuse>
+        </material>
+      </visual>
+    </link>
+
+
+    <link name="Rail">
+      <inertial>
+        <mass>10.0</mass>
+        <!-- For this model case, with the cart not having any rotational
+             degrees of freedom, the values of the inertia matrix do not
+             participate in the model. Therefore we just set them to zero
+             (or near to zero since sdformat does not allow exact zeroes
+             for inertia values). -->
+        <inertia>
+          <ixx>1.0e-20</ixx>
+          <iyy>1.0e-20</iyy>
+          <izz>1.0e-20</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="rail_visual">
+        <geometry>
+          <box>
+            <size>2.0 0.24 0.12</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+
+    <joint name="MountRail" type="prismatic">
+      <pose>0 0 0.12 0 0 0</pose>
+      <parent>Rail</parent>
+      <child>Mount</child>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+	<limit>
+          <!-- The pole pin joint is not actuated. -->
+          <effort>100</effort>
+        </limit>
+      </axis>
+    </joint>
+  </model>
+</sdf>

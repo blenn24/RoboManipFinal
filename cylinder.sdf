@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="cylinder">
+    <!--
+    Axes:
+      +X - pointing toward the handle.
+      +Z - pointing toward the top.
+    Origin:
+      (0, 0, 0) at the center (while ignoring the handle).
+    -->
+    <link name="Build_Plate">
+      <inertial>
+        <pose>0.0 0.0 0.0 0 0 0</pose>
+        <mass>0.321</mass>
+        <inertia>
+          <ixx> 0.000446</ixx>
+          <ixy> 0.000000</ixy>
+          <ixz>-0.000016</ixz>
+          <iyy> 0.000515</iyy>
+          <iyz> 0.000000</iyz>
+          <izz> 0.000415</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual_cylinder">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0.5 0.5 0.5 1.0</diffuse>
+        </material>
+      </visual>
+      <visual name="visual_box">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.12</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.9 0.5 0 1.0</diffuse>
+        </material>
+      </visual>
+      <collision name="collision_cylinder">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name="collision_box">
+        <pose>0.0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.036 0.013 0.072</size>
+          </box>
+        </geometry>
+      </collision>
+
+    </link>
+<link name="Rotator_Base">
+      <inertial>
+        <pose>0.0 0.00000 0.2 0 0 0</pose>
+        <mass>0.321</mass>
+        <inertia>
+          <ixx> 0.000446</ixx>
+          <ixy> 0.000000</ixy>
+          <ixz>-0.000016</ixz>
+          <iyy> 0.000515</iyy>
+          <iyz> 0.000000</iyz>
+          <izz> 0.000415</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual_cylinder_small">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0.5 0.5 0.5 1.0</diffuse>
+        </material>
+      </visual>
+   
+      <collision name="collision_cylinder_small">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="Rotator_Plate" type="revolute">
+      <!-- Pose of the joint frame in the pole's frame (located at the point
+           mass) -->
+      <pose>0 0 0.5 0 0 0</pose>
+      <parent>Rotator_Base</parent>
+      <child>Build_Plate</child>
+      <axis>
+        <xyz>0.0 0.0 1.0</xyz>
+        <limit>
+          <effort>500</effort>
+          <velocity>1.4835298641951802</velocity>
+          <drake:acceleration>8.57</drake:acceleration>
+        </limit>
+      </axis>
+    </joint>
+  </model>
+</sdf>

@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<sdf xmlns:drake="http://drake.mit.edu" version="1.8">
+  <model name='Benchy'>
+    <link name='Benchy'>
+      <inertial>
+        <pose>0.013798219366688364 -5.283172887987793e-06 0.13523955827475606 0 0 0</pose>
+        <mass>15.550530846566396</mass>
+        <inertia>
+          <ixx>0.25839618651093255</ixx>
+          <ixy>7.566155247176486e-06</ixy>
+          <ixz>-0.062038577781345944</ixz>
+          <iyy>0.47300105231202993</iyy>
+          <iyz>-1.185538439824435e-05</iyz>
+          <izz>0.3412727974987124</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose>0.0 0.0 0.0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>Benchy.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name='collision'>
+        <pose>0.0 0.0 0.0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>Benchy.obj</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+        <!-- The proximity properties immediately below enable the hydroelastic
+             contact model for this body. To use point contact instead, delete
+             or comment out the <drake:rigid_hydroelastic> element. -->
+        <drake:proximity_properties>
+          <drake:mu_dynamic>0.5</drake:mu_dynamic>
+          <drake:mu_static>0.5</drake:mu_static>
+          <drake:rigid_hydroelastic/>
+        </drake:proximity_properties>
+      </collision>
+    </link>
+  </model>
+</sdf>
